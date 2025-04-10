@@ -1,0 +1,43 @@
+# == Schema Information
+#
+# Table name: bulletins
+#
+#  id          :integer          not null, primary key
+#  description :text             not null
+#  state       :string           default("draft")
+#  title       :string           not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  category_id :integer          not null
+#  user_id     :integer          not null
+#
+# Indexes
+#
+#  index_bulletins_on_category_id  (category_id)
+#  index_bulletins_on_user_id      (user_id)
+#
+# Foreign Keys
+#
+#  category_id  (category_id => categories.id)
+#  user_id      (user_id => users.id)
+#
+
+one:
+  title: MyString
+  description: MyText
+  user: one
+  category: one
+
+two:
+  title: MyString
+  description: MyText
+  user: one
+  category: two
+
+
+under_moderation:
+  title: <%= Faker::Lorem.sentence(word_count: 3) %>
+  description: <%= Faker::Lorem.paragraph %>
+  user: one
+  category: two
+  state: under_moderation
